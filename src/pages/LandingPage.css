@@ -1,0 +1,39 @@
+.landing-hero {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #f7f9fc 0%, #eef6ff 100%);
+}
+
+.landing-hero .display-4 {
+  font-weight: 700;
+}
+
+.landing-hero .lead {
+  color: #556; 
+}
+
+.hero-inner {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.related-section {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.related-card {
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.related-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(16, 24, 40, 0.08);
+}
+
+@media (max-width: 768px) {
+  .display-4 { font-size: 1.8rem; }
+  .hero-inner { padding: 0 1rem; }
+  .related-section { padding: 0 1rem; }
+}

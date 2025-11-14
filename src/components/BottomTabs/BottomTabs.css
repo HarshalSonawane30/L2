@@ -1,0 +1,52 @@
+.bottom-tabs {
+  /* Keep bottom tabs visible and sticky across viewports */
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
+  padding: 8px 0;
+  z-index: 1000;
+  justify-content: space-around;
+}
+
+.tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #666;
+  padding: 8px 0;
+  flex: 1;
+  font-size: 0.8rem;
+}
+
+.tab-item svg {
+  font-size: 1.3rem;
+  margin-bottom: 4px;
+}
+
+.tab-item span {
+  font-size: 12px;
+}
+
+.tab-item.active {
+  color: #0a66c2;
+}
+
+/* Show bottom tabs on mobile screens */
+/* Add padding to main content to prevent overlap with bottom tabs on all viewports */
+.messages-container,
+main {
+  padding-bottom: 80px !important;
+}
+
+/* Slight responsive touch: reduce padding on very small screens */
+@media (max-width: 420px) {
+  .messages-container,
+  main {
+    padding-bottom: 96px !important; /* allow larger tap targets */
+  }
+}

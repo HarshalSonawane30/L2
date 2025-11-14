@@ -1,0 +1,52 @@
+/* Global responsive helpers and defaults */
+:root{
+	--max-content-width: 1100px;
+}
+
+html,body,#root{
+	height:100%;
+}
+
+body{
+	font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+	color: #0f172a;
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale;
+	margin:0;
+}
+
+img,svg{ max-width:100%; height:auto; }
+
+.container, .landing-hero .hero-inner, .related-section{
+	max-width: var(--max-content-width);
+}
+
+/* Utility: responsive stack for small screens */
+.stack-sm {
+	display:flex;
+	gap:1rem;
+}
+@media (max-width:768px){
+	.stack-sm{ flex-direction:column; }
+}
+
+/* Make cards and images nicely responsive across the app */
+.card img{ width:100%; height:auto; object-fit:cover; }
+
+/* Accessibility: larger hit targets on small screens */
+button, a.btn {
+	min-height: 40px;
+}
+
+/* Ensure forms and auth layout adapt */
+.auth-card{ width:100%; max-width:480px; }
+
+/* Small utility to center the main content on narrow screens */
+.center-max {
+	margin-left: auto; margin-right: auto; padding-left:1rem; padding-right:1rem;
+}
+
+/* Reduce big headings on small screens to avoid overflow */
+@media (max-width: 576px){
+	h1.display-4{ font-size:1.6rem; }
+}

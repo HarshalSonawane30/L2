@@ -1,0 +1,17 @@
+.highlighted-activity {
+  background-color: rgba(99, 102, 241, 0.1);
+  border-left: 4px solid #6366f1;
+  padding: 1rem;
+  margin: -1rem;
+  border-radius: 4px;
+  animation: highlight-fade 2s ease-out;
+}
+
+@keyframes highlight-fade {
+  from {
+    background-color: rgba(99, 102, 241, 0.2);
+  }
+  to {
+    background-color: rgba(99, 102, 241, 0.1);
+  }
+}

@@ -1,0 +1,36 @@
+.network-icon {
+  font-size: 24px;
+  color: #3498db;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.stat-value {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.connection-card {
+  border-radius: 12px;
+  transition: transform 0.2s;
+}
+
+.connection-card:hover {
+  transform: translateY(-2px);
+}
+
+.connection-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+.recommended-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}

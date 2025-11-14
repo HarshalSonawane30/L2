@@ -1,0 +1,425 @@
+/* General */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background: #f5f7fa;
+  color: #333;
+  scroll-behavior: smooth;
+}
+
+.home-container {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Profile Section */
+.profile-section {
+  width: 100%;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.cover-photo {
+  width: 100%;
+  height: 350px;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  position: relative;
+  overflow: hidden;
+}
+
+.edit-cover {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-cover:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.profile-info {
+  padding: 0 48px;
+  margin-top: -80px;
+  display: flex;
+  gap: 24px;
+}
+
+.profile-photo-container {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 4px solid white;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.profile-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.edit-profile-photo {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-profile-photo:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.profile-details {
+  flex: 1;
+  padding-top: 90px;
+}
+
+.profile-header {
+  margin-bottom: 12px;
+}
+
+.profile-header h1 {
+  font-size: 2rem;
+  color: #1a1a1a;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.edit-icon {
+  font-size: 1rem;
+  color: #666;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.edit-icon:hover {
+  opacity: 1;
+}
+
+.headline {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 8px 0;
+}
+
+.profile-metadata {
+  display: flex;
+  gap: 24px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.profile-metadata p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .profile-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 24px;
+  }
+
+  .profile-details {
+    padding-top: 24px;
+  }
+
+  .profile-header h1 {
+    justify-content: center;
+  }
+
+  .profile-metadata {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .cover-photo {
+    height: 200px;
+  }
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+} 
+
+/* Compact navbar used across pages */
+.site-navbar {
+  /* smaller vertical padding to reduce height */
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  min-height: 44px; /* enforce a minimum height */
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  color: #007bff;
+  font-weight: 700;
+}
+
+.nav-links a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #007bff;
+}
+
+.btn {
+  background: #007bff;
+  color: white !important;
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #0056d1;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: clamp(20px, 5vw, 60px) clamp(24px, 8vw, 100px);
+  background: #ffffff;
+  margin: clamp(12px, 3vw, 24px) clamp(16px, 4vw, 48px);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.hero-text {
+  flex: 1;
+  max-width: 600px;
+}
+
+.hero-text h2 {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  color: #222;
+  line-height: 1.3;
+}
+
+.hero-text h2 span {
+  color: #007bff;
+}
+
+.hero-text p {
+  margin: clamp(12px, 3vw, 20px) 0;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: #555;
+  line-height: 1.6;
+}
+
+.cta-btn {
+  display: inline-block;
+  background: #007bff;
+  color: #fff;
+  padding: clamp(10px, 2vw, 12px) clamp(20px, 3vw, 25px);
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.cta-btn:hover {
+  background: #0056d1;
+  transform: translateY(-2px);
+}
+
+.hero-img {
+  flex-shrink: 0;
+  margin-left: clamp(20px, 4vw, 40px);
+}
+
+.hero-img img {
+  width: clamp(200px, 30vw, 380px);
+  height: auto;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* Features Section */
+.features {
+  text-align: center;
+  padding: clamp(30px, 5vw, 60px) clamp(20px, 4vw, 50px);
+  background: #fff;
+}
+
+.features h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: #007bff;
+  margin-bottom: clamp(20px, 4vw, 30px);
+}
+
+.feature-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(20px, 3vw, 30px);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(10px, 2vw, 20px);
+}
+
+.card {
+  background: #f9fafb;
+  padding: clamp(20px, 3vw, 30px);
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.card img {
+  width: clamp(60px, 8vw, 80px);
+  height: auto;
+  margin-bottom: clamp(10px, 2vw, 15px);
+}
+
+.card h4 {
+  margin: 10px 0;
+  color: #007bff;
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
+}
+
+.card p {
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  line-height: 1.6;
+  color: #555;
+}
+
+/* Footer */
+footer {
+  background: #007bff;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 0.9rem;
+  margin-top: 50px;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    margin: 16px;
+  }
+
+  .hero-text {
+    margin-top: 20px;
+  }
+
+  .hero-img {
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .nav-links {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-links a {
+    margin: 5px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-photo-container {
+    width: 140px;
+    height: 140px;
+  }
+
+  .profile-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .headline {
+    font-size: 1rem;
+  }
+
+  .profile-metadata {
+    font-size: 0.8rem;
+  }
+
+  .feature-cards {
+    grid-template-columns: 1fr;
+  }
+
+  footer {
+    padding: 10px;
+    font-size: 0.8rem;
+  }
+}
