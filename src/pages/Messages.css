@@ -91,26 +91,25 @@
   left: 0;
   right: 0;
   bottom: 0;
-  overflow: hidden; /* Prevent any content from overflowing */
+  overflow: hidden;
 }
 
 .chat-window .card-header {
-  flex-shrink: 0; /* Prevent header from shrinking */
+  flex-shrink: 0;
   background-color: #fff;
-  z-index: 2; /* Keep header above scrolling content */
+  z-index: 2;
   padding: 1rem;
   border-bottom: 1px solid #dee2e6;
 }
 
 .chat-window .card-footer {
-  flex-shrink: 0; /* Prevent footer from shrinking */
+  flex-shrink: 0;
   background-color: #fff;
-  z-index: 2; /* Keep footer above scrolling content */
+  z-index: 2;
   padding: 1rem;
   border-top: 1px solid #dee2e6;
 }
 
-/* Conversation hover effects */
 .conversation-card {
   transform: translateZ(0);
   transition: all 0.3s ease;
@@ -127,7 +126,7 @@
   padding: 1rem;
   position: relative;
   height: 100%;
-  min-height: 0; /* Allow container to shrink */
+  min-height: 0;
 }
 
 .messages-wrapper {
@@ -148,7 +147,6 @@
   animation: fadeIn 0.3s ease forwards;
 }
 
-/* System messages (call ended, notifications) */
 .message.system {
   justify-content: center;
   max-width: 100%;
@@ -191,8 +189,8 @@
   border-radius: 1rem;
   margin-bottom: 0.25rem;
   background-color: #f0f2f5;
-  max-width: 100%; /* Ensure messages don't overflow */
-  word-wrap: break-word; /* Break long words if needed */
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 .message.sent .message-content p {
@@ -210,7 +208,6 @@
   font-size: 0.85rem;
 }
 
-/* Profile info styles */
 .chat-profile-info {
   display: flex;
   align-items: center;
@@ -219,7 +216,7 @@
 }
 
 .chat-profile-info .profile-details {
-  min-width: 0; /* Allow text to shrink */
+  min-width: 0;
   overflow: hidden;
 }
 
@@ -266,135 +263,23 @@
   transform: translateY(-1px);
 }
 
-/* Call interface styles */
-.call-container {
-  position: relative;
-  height: 100%;
-  background-color: #1a1a1a;
-  display: flex;
-  flex-direction: column;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.call-container.fullscreen {
+/* Full Screen Call Container */
+.call-container-fullscreen {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 1050;
-}
-
-.calling-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(45deg, #1a1a1a, #2d3436);
-  z-index: 1050;
+  z-index: 9999;
+  background-color: #1a1a1a;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  animation: fadeIn 0.3s ease-out;
+  overflow: hidden;
 }
 
-.calling-profile {
-  text-align: center;
-  color: white;
-  margin-bottom: 2rem;
-}
-
-.calling-avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 4px solid rgba(255, 255, 255, 0.2);
-  margin-bottom: 1rem;
-  animation: pulseAvatar 2s infinite;
-}
-
-.calling-name {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.calling-role {
-  font-size: 1rem;
-  opacity: 0.8;
-  margin-bottom: 1rem;
-}
-
-.calling-status {
-  font-size: 1.1rem;
-  color: #2ecc71;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
-}
-
-.calling-dots {
-  display: flex;
-  gap: 4px;
-  margin-left: 4px;
-}
-
-.calling-dot {
-  width: 6px;
-  height: 6px;
-  background-color: #2ecc71;
-  border-radius: 50%;
-  animation: dotPulse 1.5s infinite;
-}
-
-.calling-dot:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.calling-dot:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-.calling-controls {
-  display: flex;
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-@keyframes pulseAvatar {
-  0% {
-    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4);
-  }
-  70% {
-    box-shadow: 0 0 0 20px rgba(46, 204, 113, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(46, 204, 113, 0);
-  }
-}
-
-@keyframes dotPulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.5);
-    opacity: 0.5;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.call-container-fullscreen.fullscreen {
+  width: 100vw;
+  height: 100vh;
 }
 
 .call-header {
@@ -580,7 +465,6 @@
   font-weight: 500;
 }
 
-/* Ripple effect for buttons */
 .control-btn::after {
   content: '';
   position: absolute;
@@ -612,7 +496,6 @@
 
 /* Responsive adjustments */
 @media (max-width: 991px) {
-  /* On medium and below, let the columns stack naturally and stop using absolute positioning for the chat card */
   .messages-container {
     height: auto;
     padding-bottom: 1rem;
@@ -666,15 +549,9 @@
     bottom: -18px;
     font-size: 0.72rem;
   }
-
-  .calling-avatar {
-    width: 96px;
-    height: 96px;
-  }
 }
 
 @media (max-width: 575px) {
-  /* Phone-specific tweaks */
   .conversations-list {
     max-height: 30vh;
   }
@@ -694,21 +571,6 @@
     max-width: 88%;
   }
 
-  .calling-avatar {
-    width: 80px;
-    height: 80px;
-  }
-
-  .calling-name {
-    font-size: 1.1rem;
-  }
-
-  .calling-controls {
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
   .call-controls {
     padding: 1rem;
     gap: 1rem;
@@ -726,8 +588,7 @@
     bottom: 0.5rem;
   }
 
-  /* Ensure call container full-screen mode covers the viewport correctly on mobile */
-  .call-container.fullscreen {
+  .call-container-fullscreen {
     width: 100%;
     height: 100%;
   }

@@ -27,12 +27,10 @@ function App() {
 <Routes>
 
   {/* Default route → Signup first */}
-  <Route
-    path="/"
-    element={!isAuthenticated ? <Signup /> : <Navigate to="/home" />}
-  />
+  {/* Default route → Home (read-only for guests) */}
+  <Route path="/" element={<Navigate to="/home" replace />} />
 
-  {/* Public routes (only if NOT logged in) */}
+  {/* Public routes */}
   <Route path="/signup" element={<Signup />} />
   <Route
     path="/login"
@@ -40,10 +38,8 @@ function App() {
   />
 
   {/* Protected routes (only if logged in) */}
-  <Route
-    path="/home"
-    element={isAuthenticated ? <HomePage /> : <Navigate to="/login" />}
-  />
+  {/* Home is publicly viewable; interactions require login */}
+  <Route path="/home" element={<HomePage />} />
   <Route
     path="/connections"
     element={isAuthenticated ? <Network /> : <Navigate to="/login" />}

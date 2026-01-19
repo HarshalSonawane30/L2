@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import User from "../models/user.js";
+import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -46,13 +46,25 @@ export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = await User.findOne({ email });
-    if (!user)
-      return res.status(400).json({ message: "Invalid email or password" });
+    // Allow dev/test credentials without pre-seeding
+    const TEST_EMAIL = "admin123@gmail.com";
+    const TEST_PASS = "admin@123";
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch)
-      return res.status(400).json({ message: "Invalid email or password" });
+    let user = null;
+    if (email === TEST_EMAIL && password === TEST_PASS) {
+      user = await User.findOne({ email: TEST_EMAIL });
+      if (!user) {
+        const hashed = await bcrypt.hash(TEST_PASS, 10);
+        user = await User.create({ name: "Admin", email: TEST_EMAIL, password: hashed });
+      }
+    } else {
+      user = await User.findOne({ email });
+      if (!user)
+        return res.status(400).json({ message: "Invalid email or password" });
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch)
+        return res.status(400).json({ message: "Invalid email or password" });
+    }
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "7d",

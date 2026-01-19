@@ -1,15 +1,17 @@
 .bottom-tabs {
-  /* Keep bottom tabs visible and sticky across viewports */
+  /* Fixed bar, always visible */
   display: flex;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background: white;
+  background: #fff;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
   padding: 8px 0;
-  z-index: 1000;
+  z-index: 1030;
   justify-content: space-around;
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .tab-item {
@@ -36,17 +38,18 @@
   color: #0a66c2;
 }
 
-/* Show bottom tabs on mobile screens */
-/* Add padding to main content to prevent overlap with bottom tabs on all viewports */
+/* Add space so content doesn't sit under the tabs */
 .messages-container,
-main {
+main,
+body {
   padding-bottom: 80px !important;
 }
 
 /* Slight responsive touch: reduce padding on very small screens */
 @media (max-width: 420px) {
   .messages-container,
-  main {
-    padding-bottom: 96px !important; /* allow larger tap targets */
+  main,
+  body {
+    padding-bottom: 96px !important; /* larger touch target spacing */
   }
 }

@@ -1,13 +1,18 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Navbar as RBNavbar, Nav, Container, Button, Form, InputGroup } from "react-bootstrap";
 import { FaHome, FaUserFriends, FaEnvelope, FaUser, FaSearch, FaBell, FaUsers } from "react-icons/fa";
 import "./Navbar.css";
 import statusManager from './utils/statusManager';
 
 function Navbar() {
+  // Hide navbar on auth pages for a cleaner login/signup experience
+  const path = typeof window !== 'undefined' ? window.location.pathname : '';
+  if (path === '/login' || path === '/signup') {
+    return null;
+  }
+
   const [onlineCount, setOnlineCount] = useState(0);
-  const [meOnline, setMeOnline] = useState(typeof navigator !== 'undefined' ? navigator.onLine : false);
   const [showNotifications, setShowNotifications] = useState(false);
   const [notifications, setNotifications] = useState([
     {
@@ -38,7 +43,6 @@ function Navbar() {
       unread: false
     }
   ]);
-  const location = useLocation();
   const notificationRef = useRef(null);
 
   useEffect(() => {
@@ -64,39 +68,36 @@ function Navbar() {
     };
 
     update();
-    const iv = setInterval(update, 5000);
+    const _iv = setInterval(update, 5000);
 
     try {
       statusManager.setOnline('me', navigator.onLine);
-    } catch (e) {
+    } catch {
       // ignore in non-browser environments
     }
 
-    const handleOnline = () => {
-      setMeOnline(true);
+    window.addEventListener('online', () => {
       statusManager.setOnline('me', true);
       update();
-    };
-
-    const handleOffline = () => {
-      setMeOnline(false);
+    });
+    window.addEventListener('offline', () => {
       statusManager.setOnline('me', false);
       update();
-    };
-
-    window.addEventListener('online', handleOnline);
-    window.addEventListener('offline', handleOffline);
+    });
 
     return () => {
-      clearInterval(iv);
-      window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);
+      clearInterval(_iv);
+      window.removeEventListener('online', () => {
+        statusManager.setOnline('me', true);
+        update();
+      });
+      window.removeEventListener('offline', () => {
+        statusManager.setOnline('me', false);
+        update();
+      });
     };
   }, []);
 
-  const isActiveRoute = (path) => {
-    return location.pathname === path;
-  };
   const isAuthenticated = typeof window !== 'undefined' && localStorage.getItem('isAuthenticated') === 'true';
 
 
