@@ -338,24 +338,19 @@ function HomePage() {
   };
 
   return (
-    <Container className="home-container">
-      {/* Feed Header with Join Community Button */}
-      <div className="feed-header text-center my-4">
-        <h4 className="mb-2">Welcome to Your Learning Feed</h4>
-        <p className="mb-3 text-muted">Discover, Learn, and Share Knowledge</p>
-        
-        <Button 
-          variant="primary" 
-          size="lg" 
-          className="rounded-pill px-5 py-2 shadow-sm"
-          onClick={handleJoinCommunity}
-        >
-          Join Community
-        </Button>
-      </div>
+    <div className="home-page-wrapper">
+      <Container fluid className="home-container">
+        <div className="home-layout">
+          {/* Main Feed Section */}
+          <div className="main-feed">
+            {/* Feed Header */}
+            <div className="feed-header text-center mb-4">
+              <h4 className="mb-2">Welcome to Your Learning Feed</h4>
+              <p className="text-muted">Discover, Learn, and Share Knowledge</p>
+            </div>
 
-      {/* Create Post Section */}
-      <Card className="post-create-card mb-4">
+            {/* Create Post Section */}
+            <Card className="post-create-card mb-4">
         <Card.Body>
           <div className="d-flex align-items-center mb-3">
             <img
@@ -387,16 +382,16 @@ function HomePage() {
         </Card.Body>
       </Card>
 
-      {/* Filters */}
-      <div className="post-filters mb-4 d-flex flex-wrap gap-2 justify-content-center">
-        <Button variant="outline-primary" className="rounded-pill px-4" active>All Posts</Button>
-        <Button variant="outline-primary" className="rounded-pill px-4">Courses</Button>
-        <Button variant="outline-primary" className="rounded-pill px-4">Tips & Insights</Button>
-        <Button variant="outline-primary" className="rounded-pill px-4">Achievements</Button>
-      </div>
+            {/* Filters */}
+            <div className="post-filters mb-4 d-flex flex-wrap gap-2">
+              <Button variant="outline-primary" className="rounded-pill px-3" size="sm" active>All Posts</Button>
+              <Button variant="outline-primary" className="rounded-pill px-3" size="sm">Courses</Button>
+              <Button variant="outline-primary" className="rounded-pill px-3" size="sm">Tips & Insights</Button>
+              <Button variant="outline-primary" className="rounded-pill px-3" size="sm">Achievements</Button>
+            </div>
 
-      {/* Posts Feed */}
-      <div className="posts-container">
+            {/* Posts Feed */}
+            <div className="posts-container">
         {posts.map((post) => (
           <Card key={post.id} className={`post-card ${post.type}-post mb-4 shadow-sm`}>
             <Card.Body>
@@ -539,82 +534,103 @@ function HomePage() {
             </Card.Body>
           </Card>
         ))}
-      </div>
-
-      {/* Community Suggestions */}
-      <Card className="suggestions-card mb-4">
-        <Card.Body>
-          <div className="d-flex align-items-center justify-content-between mb-3">
-            <h5 className="mb-0">
-              <FaUsers className="me-2 text-primary" />
-              Suggested Communities
-            </h5>
+            </div>
           </div>
-          <div className="suggestions-list">
-            {communitySuggestions.map((community) => (
-              <div key={community.id} className="suggestion-item d-flex align-items-center justify-content-between p-3 border-bottom">
-                <div className="d-flex align-items-center">
-                  <img src={community.image} alt={community.name} className="suggestion-avatar me-3" />
-                  <div>
-                    <h6 className="mb-1">{community.name}</h6>
-                    <p className="text-muted small mb-1">{community.members.toLocaleString()} members</p>
-                    <small className="text-muted">{community.description}</small>
-                  </div>
-                </div>
+
+          {/* Right Sidebar - Suggestions */}
+          <div className="right-sidebar">
+            {/* Quick Actions */}
+            <Card className="quick-actions-card mb-3">
+              <Card.Body>
                 <Button 
-                  variant={joinedCommunities.has(community.id) ? "outline-primary" : "primary"}
-                  size="sm"
-                  className="rounded-pill"
-                  onClick={() => handleJoinCommunitySuggestion(community.id)}
+                  variant="primary" 
+                  className="w-100 rounded-pill mb-2"
+                  onClick={handleJoinCommunity}
                 >
-                  {joinedCommunities.has(community.id) ? "Joined" : "Join"}
+                  <FaUsers className="me-2" />
+                  Join Community
                 </Button>
-              </div>
-            ))}
-          </div>
-        </Card.Body>
-      </Card>
+              </Card.Body>
+            </Card>
 
-      {/* User Connection Suggestions */}
-      <Card className="suggestions-card mb-4">
-        <Card.Body>
-          <div className="d-flex align-items-center justify-content-between mb-3">
-            <h5 className="mb-0">
-              <FaUserPlus className="me-2 text-success" />
-              People You May Know
-            </h5>
-          </div>
-          <div className="suggestions-list">
-            {userSuggestions.map((user) => (
-              <div key={user.id} className="suggestion-item d-flex align-items-center justify-content-between p-3 border-bottom">
-                <div className="d-flex align-items-center">
-                  <img src={user.image} alt={user.name} className="suggestion-avatar me-3" />
-                  <div>
-                    <h6 className="mb-1">{user.name}</h6>
-                    <p className="text-muted small mb-1">{user.role} at {user.company}</p>
-                    <small className="text-muted">{user.mutualConnections} mutual connections</small>
-                    <div className="mt-1">
-                      {user.skills.slice(0, 2).map((skill, index) => (
-                        <span key={index} className="badge bg-light text-dark me-1 small">{skill}</span>
-                      ))}
+            {/* Community Suggestions */}
+            <Card className="suggestions-card mb-3">
+              <Card.Body>
+                <div className="d-flex align-items-center justify-content-between mb-3">
+                  <h5 className="mb-0">
+                    <FaUsers className="me-2 text-primary" />
+                    Suggested Communities
+                  </h5>
+                </div>
+                <div className="suggestions-list">
+                  {communitySuggestions.map((community) => (
+                    <div key={community.id} className="suggestion-item d-flex align-items-center justify-content-between p-3 border-bottom">
+                      <div className="d-flex align-items-center">
+                        <img src={community.image} alt={community.name} className="suggestion-avatar me-3" />
+                        <div>
+                          <h6 className="mb-1">{community.name}</h6>
+                          <p className="text-muted small mb-1">{community.members.toLocaleString()} members</p>
+                          <small className="text-muted">{community.description}</small>
+                        </div>
+                      </div>
+                      <Button 
+                        variant={joinedCommunities.has(community.id) ? "outline-primary" : "primary"}
+                        size="sm"
+                        className="rounded-pill"
+                        onClick={() => handleJoinCommunitySuggestion(community.id)}
+                      >
+                        {joinedCommunities.has(community.id) ? "Joined" : "Join"}
+                      </Button>
                     </div>
-                  </div>
+                  ))}
                 </div>
-                <Button 
-                  variant={connectedUsers.has(user.id) ? "outline-success" : "success"}
-                  size="sm"
-                  className="rounded-pill"
-                  onClick={() => handleConnect(user.id)}
-                >
-                  <FaUserPlus className="me-1" />
-                  {connectedUsers.has(user.id) ? "Connected" : "Connect"}
-                </Button>
-              </div>
-            ))}
-          </div>
-        </Card.Body>
-      </Card>
+              </Card.Body>
+            </Card>
 
+            {/* User Connection Suggestions */}
+            <Card className="suggestions-card mb-3">
+              <Card.Body>
+                <div className="d-flex align-items-center justify-content-between mb-3">
+                  <h5 className="mb-0">
+                    <FaUserPlus className="me-2 text-success" />
+                    People You May Know
+                  </h5>
+                </div>
+                <div className="suggestions-list">
+                  {userSuggestions.map((user) => (
+                    <div key={user.id} className="suggestion-item d-flex align-items-center justify-content-between p-3 border-bottom">
+                      <div className="d-flex align-items-center">
+                        <img src={user.image} alt={user.name} className="suggestion-avatar me-3" />
+                        <div>
+                          <h6 className="mb-1">{user.name}</h6>
+                          <p className="text-muted small mb-1">{user.role} at {user.company}</p>
+                          <small className="text-muted">{user.mutualConnections} mutual connections</small>
+                          <div className="mt-1">
+                            {user.skills.slice(0, 2).map((skill, index) => (
+                              <span key={index} className="badge bg-light text-dark me-1 small">{skill}</span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                      <Button 
+                        variant={connectedUsers.has(user.id) ? "outline-success" : "success"}
+                        size="sm"
+                        className="rounded-pill"
+                        onClick={() => handleConnect(user.id)}
+                      >
+                        <FaUserPlus className="me-1" />
+                        {connectedUsers.has(user.id) ? "Connected" : "Connect"}
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              </Card.Body>
+            </Card>
+          </div>
+        </div>
+      </Container>
+      
+      {/* Modals */}
       {/* Comment Modal */}
       <Modal show={showCommentModal} onHide={() => setShowCommentModal(false)} centered size="lg" className="comment-modal">
         <Modal.Header closeButton>
@@ -751,7 +767,7 @@ function HomePage() {
               <Button 
                 variant="outline-secondary" 
                 className="share-btn d-flex flex-column align-items-center p-3"
-                onClick={() => handleSocialShare('email', sharePostId)}
+      div onClick={() => handleSocialShare('email', sharePostId)}
               >
                 <FaEnvelope size={24} className="mb-2" />
                 <span>Email</span>
@@ -771,7 +787,7 @@ function HomePage() {
           </div>
         </Modal.Body>
       </Modal>
-    </Container>
+    </div>
   );
 }
 

@@ -61,153 +61,126 @@ const Signup = () => {
   const togglePasswordVisibility = (field) => setShowPassword((prev) => ({ ...prev, [field]: !prev[field] }));
 
   return (
-    <>
-      <div className="auth-top-sticky">
-        <div className="sticky-inner">
-          <div className="app-name-small">Learn and Let Learn</div>
-          <div className="page-title">Join Our Community</div>
-        </div>
-      </div>
-
-      <div className="auth-container">
-        <div className="auth-card">
-          <div className="auth-card-inner">
-            {/* Left side - branding / illustration */}
-            <div className="auth-side">
-              <div className="app-branding">
-                <img
-                  src="/logo.png"
-                  alt="Logo"
-                  className="auth-logo-large"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = 'https://via.placeholder.com/120x120?text=Logo';
-                  }}
-                />
-                <h1 className="app-name">Learn and Let Learn</h1>
-                <p className="app-tagline">Connect • Share • Grow</p>
-              </div>
-              <div className="auth-side-illustration" aria-hidden={true}>
-                <img src="https://cdn-icons-png.flaticon.com/512/3593/3593264.png" alt="" />
-              </div>
-              <div className="auth-side-text">
-                <h2>Join a community of learners</h2>
-                <p>Share projects, find mentors, and grow together with focused learning paths and friendly peers.</p>
-              </div>
-            </div>
-
-            {/* Right side - form */}
-            <div className="auth-form-wrap">
-              <div className="auth-header">
-                <h1 className="auth-title">Join Our Community</h1>
-                <p className="auth-subtitle">Create your account to get started</p>
-                <div className="auth-existing-account">
-                  <p>Already have an account?</p>
-                  <Link to="/login" className="auth-switch-btn">
-                    Sign In Here
-                  </Link>
-                </div>
-              </div>
-
-              <form className="auth-form" onSubmit={handleSubmit}>
-                {errors.form && <div className="form-error">{errors.form}</div>}
-
-                <div className="form-group">
-                  <input
-                    ref={nameInputRef}
-                    type="text"
-                    className="form-control"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder=" "
-                    autoComplete="name"
-                  />
-                  <label className="form-label">
-                    <FaUser /> Full Name
-                  </label>
-                  {errors.name && (
-                    <div className="error-message">
-                      <FaExclamationCircle /> {errors.name}
-                    </div>
-                  )}
-                </div>
-
-                <div className="form-group">
-                  <input
-                    type="email"
-                    className="form-control"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder=" "
-                    autoComplete="email"
-                  />
-                  <label className="form-label">
-                    <FaEnvelope /> Email Address
-                  </label>
-                  {errors.email && (
-                    <div className="error-message">
-                      <FaExclamationCircle /> {errors.email}
-                    </div>
-                  )}
-                </div>
-
-                <div className="form-group">
-                  <input
-                    type={showPassword.password ? 'text' : 'password'}
-                    className="form-control"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    placeholder=" "
-                    autoComplete="new-password"
-                  />
-                  <label className="form-label">
-                    <FaLock /> Password
-                  </label>
-                  <button type="button" className="password-toggle" onClick={() => togglePasswordVisibility('password')}>
-                    {showPassword.password ? <FaEyeSlash /> : <FaEye />}
-                  </button>
-                  {errors.password && (
-                    <div className="error-message">
-                      <FaExclamationCircle /> {errors.password}
-                    </div>
-                  )}
-                </div>
-
-                <div className="form-group">
-                  <input
-                    type={showPassword.confirmPassword ? 'text' : 'password'}
-                    className="form-control"
-                    name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    placeholder=" "
-                    autoComplete="new-password"
-                  />
-                  <label className="form-label">
-                    <FaLock /> Confirm Password
-                  </label>
-                  <button type="button" className="password-toggle" onClick={() => togglePasswordVisibility('confirmPassword')}>
-                    {showPassword.confirmPassword ? <FaEyeSlash /> : <FaEye />}
-                  </button>
-                  {errors.confirmPassword && (
-                    <div className="error-message">
-                      <FaExclamationCircle /> {errors.confirmPassword}
-                    </div>
-                  )}
-                </div>
-
-                <button type="submit" className="submit-btn">
-                  Sign Up
-                </button>
-              </form>
-            </div>
+    <div className="auth-container">
+      <div className="auth-card">
+        <div className="auth-header">
+          <div className="app-branding">
+            <img
+              src="/logo.png"
+              alt="Logo"
+              className="auth-logo"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = 'https://via.placeholder.com/80x80?text=Logo';
+              }}
+            />
+            <h1 className="app-name">Learn & Let Learn</h1>
+            <p className="app-tagline">Connect • Share • Grow</p>
           </div>
+          <h2 className="auth-title">Create Account</h2>
+          <p className="auth-subtitle">Join our learning community today</p>
+        </div>
+
+        <form className="auth-form" onSubmit={handleSubmit}>
+          {errors.form && <div className="form-error">{errors.form}</div>}
+
+          <div className="form-group">
+            <input
+              ref={nameInputRef}
+              type="text"
+              className="form-control"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder=" "
+              autoComplete="name"
+            />
+            <label className="form-label">
+              <FaUser /> Full Name
+            </label>
+            {errors.name && (
+              <div className="error-message">
+                <FaExclamationCircle /> {errors.name}
+              </div>
+            )}
+          </div>
+
+          <div className="form-group">
+            <input
+              type="email"
+              className="form-control"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder=" "
+              autoComplete="email"
+            />
+            <label className="form-label">
+              <FaEnvelope /> Email Address
+            </label>
+            {errors.email && (
+              <div className="error-message">
+                <FaExclamationCircle /> {errors.email}
+              </div>
+            )}
+          </div>
+
+          <div className="form-group">
+            <input
+              type={showPassword.password ? 'text' : 'password'}
+              className="form-control"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder=" "
+              autoComplete="new-password"
+            />
+            <label className="form-label">
+              <FaLock /> Password
+            </label>
+            <button type="button" className="password-toggle" onClick={() => togglePasswordVisibility('password')}>
+              {showPassword.password ? <FaEyeSlash /> : <FaEye />}
+            </button>
+            {errors.password && (
+              <div className="error-message">
+                <FaExclamationCircle /> {errors.password}
+              </div>
+            )}
+          </div>
+
+          <div className="form-group">
+            <input
+              type={showPassword.confirmPassword ? 'text' : 'password'}
+              className="form-control"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              placeholder=" "
+              autoComplete="new-password"
+            />
+            <label className="form-label">
+              <FaLock /> Confirm Password
+            </label>
+            <button type="button" className="password-toggle" onClick={() => togglePasswordVisibility('confirmPassword')}>
+              {showPassword.confirmPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+            {errors.confirmPassword && (
+              <div className="error-message">
+                <FaExclamationCircle /> {errors.confirmPassword}
+              </div>
+            )}
+          </div>
+
+          <button type="submit" className="submit-btn">
+            Create Account
+          </button>
+        </form>
+
+        <div className="auth-existing-account">
+          <p>Already have an account? <Link to="/login" className="auth-link">Sign In</Link></p>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

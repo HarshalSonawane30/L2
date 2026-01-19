@@ -41,6 +41,21 @@ const Login = () => {
     e.preventDefault();
     
     if (validateForm()) {
+      // Check for test credentials
+      if (formData.email === 'test@test.com' && formData.password === 'test123') {
+        // Test login - bypass backend
+        const testUser = {
+          id: 'test-user-123',
+          name: 'Test User',
+          email: 'test@test.com'
+        };
+        localStorage.setItem('token', 'test-token-123');
+        localStorage.setItem('user', JSON.stringify(testUser));
+        localStorage.setItem('isAuthenticated', 'true');
+        navigate('/home#posts');
+        return;
+      }
+      
       // Perform login request to backend
       fetch(`${API_URL}/api/users/login`, {
         method: 'POST',
@@ -85,38 +100,31 @@ const Login = () => {
   };
 
   return (
-    <>
-      <div className="auth-top-sticky">
-        <div className="sticky-inner">
-          <div className="app-name-small">Learn and Let Learn</div>
-          <div className="page-title">Welcome Back</div>
-        </div>
-      </div>
-      <div className="auth-container">
+    <div className="auth-container">
       <div className="auth-card">
         <div className="auth-header">
           <div className="app-branding">
-            <h1 className="app-name">Learn and Let Learn</h1>
+            <img 
+              src="/logo.png" 
+              alt="Logo" 
+              className="auth-logo"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = 'https://via.placeholder.com/80x80?text=Logo';
+              }}
+            />
+            <h1 className="app-name">Learn & Let Learn</h1>
             <p className="app-tagline">Connect • Share • Grow</p>
           </div>
-          <img 
-            src="/logo.png" 
-            alt="Logo" 
-            className="auth-logo"
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = 'https://via.placeholder.com/64x64?text=Logo';
-            }}
-          />
-          <h1 className="auth-title">Welcome Back</h1>
-          <p className="auth-subtitle">Sign in to continue to your account</p>
-          <Link to="/signup" className="auth-switch-btn">
-            Create New Account
-          </Link>
+          <h2 className="auth-title">Welcome Back</h2>
+          <p className="auth-subtitle">Sign in to your account</p>
         </div>
         {registered && (
           <div className="form-success">Signup successful — please sign in with your new account.</div>
         )}
+        <div className="test-credentials-hint">
+          <small>💡 Test Login: <strong>test@test.com</strong> / <strong>test123</strong></small>
+        </div>
 
         <form className="auth-form" onSubmit={handleSubmit}>
           {errors.form && (
@@ -176,9 +184,11 @@ const Login = () => {
           </button>
         </form>
 
+        <div className="auth-existing-account">
+          <p>Don't have an account? <Link to="/signup" className="auth-link">Sign Up</Link></p>
+        </div>
       </div>
     </div>
-    </>
   );
 };
 

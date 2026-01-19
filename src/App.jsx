@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import Navbar from './Navbar'
 import HomePage from './pages/HomePage'
 import LandingPage from './pages/LandingPage'
@@ -16,19 +16,23 @@ import ProfileEdit from './ProfileEdit'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import BottomTabs from './components/BottomTabs/BottomTabs'
+import Footer from './components/Footer'
 
-function App() {
+function AppContent() {
+  const location = useLocation();
   // For demo purposes. In a real app, you'd use proper auth state management
   const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+  
+  // Hide footer on signup and login pages
+  const hideFooter = ['/signup', '/login', '/'].includes(location.pathname);
 
   return (
-    <BrowserRouter>
+    <>
       <Navbar />
-<Routes>
+      <Routes>
 
-  {/* Default route → Signup first */}
-  {/* Default route → Home (read-only for guests) */}
-  <Route path="/" element={<Navigate to="/home" replace />} />
+  {/* Default route → Signup page */}
+  <Route path="/" element={<Navigate to="/signup" replace />} />
 
   {/* Public routes */}
   <Route path="/signup" element={<Signup />} />
@@ -77,11 +81,21 @@ function App() {
     element={isAuthenticated ? <ProfileEdit /> : <Navigate to="/login" />}
   />
 
-</Routes>
+      </Routes>
 
       {/* Mobile bottom tabs (Home, Connections, Messages, Profile) */}
       {isAuthenticated && <BottomTabs />}
+      
+      {/* Footer - hidden on signup and login pages */}
+      {!hideFooter && <Footer />}
+    </>
+  )
+}
 
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
     </BrowserRouter>
   )
 }

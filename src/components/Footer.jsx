@@ -19,7 +19,7 @@ export default function Footer() {
         <div className="footer-col links">
           <h5>Quick links</h5>
           <ul>
-            <li><Link to="/">Home</Link></li>
+            <li><Link to="/home">Home</Link></li>
             <li><Link to="/messages">Messages</Link></li>
             <li><Link to="/connections">Connections</Link></li>
             <li><Link to="/create-community">Create Community</Link></li>

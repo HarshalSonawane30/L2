@@ -1,4 +1,74 @@
 /* ===============================
+   THREE-COLUMN LAYOUT
+================================ */
+
+.home-page-wrapper {
+  background-color: #f3f4f6;
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+.home-container {
+  max-width: 1280px;
+  padding: 0 1rem;
+}
+
+.home-layout {
+  display: grid;
+  grid-template-columns: 1fr 600px 320px;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Main Feed - Center Column */
+.main-feed {
+  grid-column: 2;
+}
+
+/* Right Sidebar */
+.right-sidebar {
+  grid-column: 3;
+  position: sticky;
+  top: 80px;
+  height: fit-content;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+
+/* Responsive Layout */
+@media (max-width: 1200px) {
+  .home-layout {
+    grid-template-columns: 1fr 320px;
+  }
+  
+  .main-feed {
+    grid-column: 1;
+  }
+  
+  .right-sidebar {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .main-feed {
+    grid-column: 1;
+  }
+  
+  .right-sidebar {
+    grid-column: 1;
+    position: relative;
+    top: 0;
+    max-height: none;
+  }
+}
+
+/* ===============================
    COMMENT AVATAR – SMALL & CLEAN
 ================================ */
 
@@ -79,17 +149,19 @@
    LINKEDIN-LIKE FEED & POST STYLES
 ================================ */
 
-/* Center feed like LinkedIn main column */
-.home-container {
-  max-width: 720px; /* LinkedIn feed column ~ 680-740px */
-  margin: 0 auto;
+/* Feed Header */
+.feed-header h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
 }
 
 /* Composer (Create Post) */
 .post-create-card {
   border: 1px solid #e5e7eb;
   border-radius: 8px;
-  box-shadow: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  background: white;
 }
 
 .post-avatar {
@@ -173,17 +245,72 @@
 .suggestions-card {
   border: 1px solid #e5e7eb;
   border-radius: 8px;
+  background: white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
+
+.suggestions-card h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.suggestion-item {
+  transition: background-color 0.2s ease;
+}
+
+.suggestion-item:hover {
+  background-color: #f9fafb;
+}
+
 .suggestion-avatar {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   border-radius: 8px;
   object-fit: cover;
 }
 
+.suggestions-list .suggestion-item:last-child {
+  border-bottom: none !important;
+}
+
+/* Quick Actions Card */
+.quick-actions-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Post Filters */
+.post-filters {
+  padding: 0.5rem 0;
+}
+
+.post-filters .btn {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
 /* Responsive tweaks */
+@media (max-width: 768px) {
+  .home-page-wrapper {
+    padding-top: 60px;
+  }
+  
+  .post-filters {
+    justify-content: flex-start !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .post-filters::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @media (max-width: 480px) {
-  .home-container { max-width: 100%; padding: 0 10px; }
   .post-avatar { width: 40px; height: 40px; }
-  .action-btn { height: 36px; gap: 6px; }
+  .action-btn { height: 36px; gap: 6px; font-size: 0.85rem; }
+  .suggestion-avatar { width: 40px; height: 40px; }
 }

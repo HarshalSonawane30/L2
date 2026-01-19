@@ -1522,14 +1522,10 @@ const App = () => {
         <button onClick={() => setCurrentView('profile')} style={{ margin: '0 10px', padding: '10px 20px', background: currentView === 'profile' ? '#0095f6' : '#fff', color: currentView === 'profile' ? '#fff' : '#000', border: '1px solid #dbdbdb', borderRadius: '8px', cursor: 'pointer' }}>
           My Profile
         </button>
-        <button onClick={() => setCurrentView('view')} style={{ margin: '0 10px', padding: '10px 20px', background: currentView === 'view' ? '#0095f6' : '#fff', color: currentView === 'view' ? '#fff' : '#000', border: '1px solid #dbdbdb', borderRadius: '8px', cursor: 'pointer' }}>
-          View Profile
-        </button>
       </div>
 
       {currentView === 'profile' && <UserProfile onEditClick={() => setCurrentView('edit')} />}
       {currentView === 'edit' && <ProfileEdit onSaveClick={() => setCurrentView('profile')} onCancelClick={() => setCurrentView('profile')} />}
-      {currentView === 'view' && <ProfileView />}
     </div>
   );
 };
